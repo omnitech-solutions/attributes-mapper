@@ -1,8 +1,9 @@
 # AttributesMapper
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/attributes/mapper`. To experiment with that code, run `bin/console` for an interactive prompt.
+Builds upon `[json-path-builder](https://github.com/omnitech-solutions/json-path-builder)` to deliver a highly declarative and dynamic mapping of JSON/Hash Attributes
 
-TODO: Delete this and the text above, and describe your gem
+## Console
+run `irb -r ./dev/setup` for an interactive prompt.
 
 ## Installation
 
@@ -22,7 +23,37 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+```ruby
+class UserAttributesMapper < AttributesMapper::Builder
+  configure do |config|
+    config.required_attributes = %i[name email]
+    config.optional_attributes = %i[age key]
+    config.scopes = { profile: 'user.profile', info: 'user.info' }
+  end
+
+  name { { from: :username, scope: :profile } } # corresponds to path `user.profile.username`
+  email { { from: :email, scope: :profile } } # corresponds to path `user.profile.email`
+  age { { from: :age, scope: :info } } # corresponds to path `user.info.age`
+  key { { from: :key } } # corresponds to path `key`
+end
+
+input = { user:
+            { profile:
+                {
+                  username: 'Joe Bloggs',
+                  email: 'joe@email.com'
+                },
+              info: {
+
+                age: 23
+              }
+            },
+          key: 'some-value'
+}
+
+builder = UserAttributesMapper.new(input).build
+builder.to_h #=> { name: 'Joe Bloggs', email: 'joe@email.com', age: 23, key: 'some-value' }
+```
 
 ## Development
 
