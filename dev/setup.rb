@@ -10,6 +10,7 @@ require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/object/json'
 require 'active_support/core_ext/enumerable'
 require 'active_support/configurable'
+require 'rudash'
 
 %w[../../lib/attributes_mapper ../../spec/spec_helper].each do |rel_path|
   require File.expand_path(rel_path, Pathname.new(__FILE__).realpath)
