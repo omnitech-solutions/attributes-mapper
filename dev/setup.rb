@@ -12,6 +12,6 @@ require 'active_support/core_ext/enumerable'
 require 'active_support/configurable'
 require 'rudash'
 
-%w[../../lib/attributes_mapper ../../spec/spec_helper].each do |rel_path|
+%w[../../lib/attributes-mapper ../../spec/spec_helper].each do |rel_path|
   require File.expand_path(rel_path, Pathname.new(__FILE__).realpath)
 end

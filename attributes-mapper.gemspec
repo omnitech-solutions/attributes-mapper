@@ -22,7 +22,7 @@ Gem::Specification.new do |gem|
   gem.metadata["source_code_uri"] = gem.homepage
   gem.metadata["changelog_uri"] = "#{gem.homepage}/CHANGELOG.md"
 
-  gem.add_runtime_dependency 'json-path-builder', '~> 0.1.0'
+  gem.add_runtime_dependency 'json-path-builder', '~> 0.1.7'
   gem.add_runtime_dependency 'rordash', '~> 0.1.2'
 
   gem.add_development_dependency("codecov", "~> 0.6.0")
